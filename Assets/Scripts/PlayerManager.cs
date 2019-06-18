@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public float size;
+
     void Start()
     {
-        Vector3 size = GetComponent<SpriteRenderer>().bounds.size;
-        float max = Mathf.Max(size.x, size.y, size.z);
+        // setup bounding boxes
+        Vector3 spriteSize = GetComponent<SpriteRenderer>().bounds.size;
+        float max = Mathf.Max(spriteSize.x, spriteSize.y, spriteSize.z);
         GetComponent<BoxCollider>().size = new Vector3(max, max, max);
-        transform.localScale = new Vector3(1 / max, 1 / max, 1 / max);
+        max = size / max;
+        transform.localScale = new Vector3(max, max, max);
     }
 }

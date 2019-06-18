@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,5 +33,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float distToGround = coll.bounds.extents.y;
         grounded = Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+
+        if (transform.position.y < -0.5) {
+            // fallen
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
